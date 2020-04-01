@@ -7,3 +7,16 @@ before_install:
 
 script:
   - docker run -e CI=true ivanac/docker-react-u npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-west-2"
+  app: "docker-react-u"
+  env: "DockerReactU-env"
+  bucket_name: "elasticbeanstalk-us-west-2-193222755118"
+  bucket_path: "docker-react-u"
+  on:
+    branch: master
+  access_key_id: "$aws-access-key"
+  secret_access_key:
+    secure: "$aws-secret-key"
