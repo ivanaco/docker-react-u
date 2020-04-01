@@ -1,0 +1,9 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t ivanac/docker-react-u -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true ivanac/docker-react-u npm run test
